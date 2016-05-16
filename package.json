@@ -13,9 +13,21 @@
     "your"
   ],
   "author": "Dan Mutton & Ryan Boucher",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.4.5"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danmutton/asciiclockface.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danmutton/asciiclockface/issues"
+  },
+  "homepage": "https://github.com/danmutton/asciiclockface#readme"
 }
