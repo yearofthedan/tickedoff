@@ -1,0 +1,21 @@
+{
+  "name": "asciiclockface",
+  "version": "1.0.0",
+  "description": "Clock Face, ASCII",
+  "main": "ascii-face.js",
+  "scripts": {
+    "test": "mocha tests"
+  },
+  "keywords": [
+    "ascii",
+    "clock",
+    "face",
+    "your"
+  ],
+  "author": "Dan Mutton & Ryan Boucher",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
