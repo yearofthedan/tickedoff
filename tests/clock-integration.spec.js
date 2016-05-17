@@ -3,7 +3,7 @@ var path = require('path');
 var child = require('child_process');
 var expect = require('chai').expect;
 
-const exec = path.join(__dirname, '..', 'src', 'asciiface.js');
+const exec = path.join(__dirname, '..', 'index.js');
 
 describe('an ascii clock face', () => {
 

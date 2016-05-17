@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
@@ -25,16 +23,19 @@ function writeOut(message) {
     process.stdout.write(`${message}\n\r`);
 }
 
-rl.question('Enter the time: ', theTime => {
-
-    try {
-        checkInput(theTime);
-        writeOut(clockFromIntervals(parseIntervals(theTime)));
-    }
-    catch(e) {
-        if (e.message === 'Invalid time format') {
-            writeOut('Invalid time. Input must be in hh:mm format e.g. 13:30');
+function asciiClockFace () {
+    rl.question('Enter the time: ', theTime => {
+        try {
+            checkInput(theTime);
+            writeOut(clockFromIntervals(parseIntervals(theTime)));
         }
-    }
-    rl.close();
-});
+        catch(e) {
+            if (e.message === 'Invalid time format') {
+                writeOut('Invalid time. Input must be in hh:mm format e.g. 13:30');
+            }
+        }
+        rl.close();
+    });
+}
+
+module.exports = asciiClockFace;

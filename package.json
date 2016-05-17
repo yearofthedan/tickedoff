@@ -2,8 +2,9 @@
   "name": "asciiclockface",
   "version": "1.0.0",
   "description": "Clock Face, ASCII",
-  "main": "ascii-face.js",
+  "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "mocha tests"
   },
   "keywords": [
