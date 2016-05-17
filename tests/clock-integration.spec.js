@@ -58,4 +58,27 @@ o               o
             });
         });
     });
+
+    it('return a clock face with the hour and minute hand on the same interval', (done) => {
+        const expected =
+`        o
+    o       o
+
+ o             o
+
+o               o
+
+ o             o
+
+    o       o
+        x`;
+
+        proc.stdout.once('data', function(output) {
+            proc.stdin.write('06:30\r');
+            proc.stdout.once('data', function(output) {
+                expect(output.toString('utf-8')).to.eq(expected);
+                done();
+            });
+        });
+    });
 });

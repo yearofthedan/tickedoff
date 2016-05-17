@@ -12,12 +12,12 @@ function normaliseHourToClockInterval (hour) {
 const minutesPerInterval = 5;
 
 rl.question('Enter the time: ', theTime => {
-    const hour = normaliseHourToClockInterval(theTime.split(':')[0]);
-    const minute = Math.floor(theTime.split(':')[1] / minutesPerInterval);
+    const hourHand = normaliseHourToClockInterval(theTime.split(':')[0]);
+    const minuteHand = Math.floor(theTime.split(':')[1] / minutesPerInterval);
 
     const intervals = new Array(12).fill('o');
-    intervals[hour] = 'h';
-    intervals[minute] = 'm';
+    intervals[hourHand] = 'h';
+    intervals[minuteHand] = minuteHand === hourHand ? 'x' : 'm';
 
     process.stdout.write(
 `        ${intervals[0]}
