@@ -13,6 +13,17 @@ describe('an ascii clock face', () => {
      proc = child.spawn(exec, {stdio: 'pipe'});
     });
 
+    function testClock(time, expected, done) {
+        proc.stdout.once('data', function(output) {
+            proc.stdin.write(`${time}\r`);
+            proc.stdout.once('data', function(output) {
+
+                expect(output.toString('utf-8').replace(/\n\r/, '')).to.eq(expected);
+                done();
+            });
+        });
+    }
+
     it('return a clock face with different hour and minute hands', function(done) {
         const expected =
 `        o
@@ -26,14 +37,7 @@ h               o
 
     m       o
         o`;
-
-        proc.stdout.once('data', function(output) {
-            proc.stdin.write('21:35\r');
-            proc.stdout.once('data', function(output) {
-                expect(output.toString('utf-8')).to.eq(expected);
-                done();
-            });
-        });
+        testClock('21:35', expected, done);
     });
 
     it('return a clock face with rounded down minutes', (done) => {
@@ -49,14 +53,7 @@ o               o
 
     o       o
         o`;
-
-        proc.stdout.once('data', function(output) {
-            proc.stdin.write('04:59\r');
-            proc.stdout.once('data', function(output) {
-                expect(output.toString('utf-8')).to.eq(expected);
-                done();
-            });
-        });
+        testClock('04:59', expected, done);
     });
 
     it('return a clock face with the hour and minute hand on the same interval', (done) => {
@@ -72,13 +69,6 @@ o               o
 
     o       o
         x`;
-
-        proc.stdout.once('data', function(output) {
-            proc.stdin.write('06:30\r');
-            proc.stdout.once('data', function(output) {
-                expect(output.toString('utf-8')).to.eq(expected);
-                done();
-            });
-        });
+        testClock('06:30', expected, done);
     });
 });

@@ -30,6 +30,6 @@ ${intervals[9]}               ${intervals[3]}
  ${intervals[8]}             ${intervals[4]}
 
     ${intervals[7]}       ${intervals[5]}
-        ${intervals[6]}`);
+        ${intervals[6]}\n\r`);
     rl.close();
 });
