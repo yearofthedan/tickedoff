@@ -1,2 +1,13 @@
 #!/usr/bin/env node
-process.stdout.write('I am a clock');
+
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+rl.question('Enter the time ', theTime => {
+
+    process.stdout.write(`I am a clock at ${theTime}`);
+    rl.close();
+});
