@@ -71,4 +71,8 @@ o               o
         x`;
         testClock('06:30', expected, done);
     });
+
+    it('return an error message with invalid input', (done) => {
+        testClock('24:00', 'Invalid time. Input must be in hh:mm format e.g. 13:30', done);
+    });
 });
