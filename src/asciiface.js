@@ -3,16 +3,14 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-const checkInput = require('./input-validation').checkInput;
+const checkInput = require('./input-validation');
 const mapHourToInterval = require('./time-to-interval-mapping').mapHourToInterval;
 const mapMinuteToInterval = require('./time-to-interval-mapping').mapMinuteToInterval
 const clockFromIntervals = require('./clock-display');
 const getHourFromTime = theTime => theTime.split(':')[0];
 const getMinutesFromTime = theTime => theTime.split(':')[1];
 
-function parseIntervals(theTime) {
-    const hourHand = mapHourToInterval(getHourFromTime(theTime));
-    const minuteHand = mapMinuteToInterval(getMinutesFromTime(theTime));
+function buildIntervals(hourHand, minuteHand) {
     const intervals = new Array(12).fill('o');
     intervals[hourHand] = 'h';
     intervals[minuteHand] = minuteHand === hourHand ? 'x' : 'm';
@@ -25,15 +23,15 @@ function writeOut(message) {
 
 function asciiClockFace () {
     rl.question('Enter the time: ', theTime => {
-        try {
-            checkInput(theTime);
-            writeOut(clockFromIntervals(parseIntervals(theTime)));
+        if (!checkInput(theTime)) {
+            writeOut('Invalid time. Input must be in hh:mm format e.g. 13:30');
         }
-        catch(e) {
-            if (e.message === 'Invalid time format') {
-                writeOut('Invalid time. Input must be in hh:mm format e.g. 13:30');
-            }
-        }
+
+        const hourHand = mapHourToInterval(getHourFromTime(theTime));
+        const minuteHand = mapMinuteToInterval(getMinutesFromTime(theTime));
+
+        writeOut(clockFromIntervals(buildIntervals(hourHand, minuteHand)));
+
         rl.close();
     });
 }

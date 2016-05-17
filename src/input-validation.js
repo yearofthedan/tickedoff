@@ -1,12 +1,11 @@
 'use strict';
 
-module.exports = {
-    checkInput: function checkInput(input) {
-        const hours = String.raw`([0|1][\d]|[2][0-3])`;
-        const minutes = String.raw`([0-5][\d])`;
+function checkInput(input) {
+    const hours = '([0|1][\\d]|[2][0-3])';
+    const minutes  = '([0-5][\\d])';
+    const validTime = new RegExp(`^${hours}:${minutes}$`);
 
-        if (!(RegExp(`^${hours}:${minutes}$`)).test(input)) {
-            throw new Error('Invalid time format');
-        };
-    }
+    return validTime.test(input);
 }
+
+module.exports = checkInput;
