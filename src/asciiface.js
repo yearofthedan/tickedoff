@@ -7,18 +7,15 @@ const rl = readline.createInterface({
 });
 const checkInput = require('./input-validation').checkInput;
 
-function normaliseHourToClockInterval(hour) {
-    return hour % 12;
-}
+const mapHourToInterval = require('../src/time-to-interval-mapping').mapHourToInterval;
+const mapMinuteToInterval = require('../src/time-to-interval-mapping').mapMinuteToInterval
 
-const minutesPerInterval = 5;
-function normaliseMinuteToClockInterval(minutes) {
-    return Math.floor(minutes / minutesPerInterval);
-}
+const getHourFromTime = theTime => theTime.split(':')[0];
+const getMinutesFromTime = theTime => theTime.split(':')[1];
 
 function parseIntervals(theTime) {
-    const hourHand = normaliseHourToClockInterval(theTime.split(':')[0]);
-    const minuteHand = normaliseMinuteToClockInterval(theTime.split(':')[1]);
+    const hourHand = mapHourToInterval(getHourFromTime(theTime));
+    const minuteHand = mapMinuteToInterval(getMinutesFromTime(theTime));
     const intervals = new Array(12).fill('o');
     intervals[hourHand] = 'h';
     intervals[minuteHand] = minuteHand === hourHand ? 'x' : 'm';
