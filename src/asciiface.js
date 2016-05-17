@@ -11,12 +11,26 @@ function normaliseHourToClockInterval(hour) {
     return hour % 12;
 }
 
+const minutesPerInterval = 5;
+function normaliseMinuteToClockInterval(minutes) {
+    return Math.floor(minutes / minutesPerInterval);
+}
+
+function parseIntervals(theTime) {
+    const hourHand = normaliseHourToClockInterval(theTime.split(':')[0]);
+    const minuteHand = normaliseMinuteToClockInterval(theTime.split(':')[1]);
+    const intervals = new Array(12).fill('o');
+    intervals[hourHand] = 'h';
+    intervals[minuteHand] = minuteHand === hourHand ? 'x' : 'm';
+    return intervals;
+}
+
 function writeOut(message) {
     process.stdout.write(`${message}\n\r`);
 }
 
-function clockFromIntervals(intervals) {
-    return `        ${intervals[0]}
+const clockFromIntervals = (intervals) =>
+`        ${intervals[0]}
     ${intervals[11]}       ${intervals[1]}
 
  ${intervals[10]}             ${intervals[2]}
@@ -27,21 +41,12 @@ ${intervals[9]}               ${intervals[3]}
 
     ${intervals[7]}       ${intervals[5]}
         ${intervals[6]}`;
-}
-
-const minutesPerInterval = 5;
 
 rl.question('Enter the time: ', theTime => {
 
     try {
         checkInput(theTime);
-        const hourHand = normaliseHourToClockInterval(theTime.split(':')[0]);
-        const minuteHand = Math.floor(theTime.split(':')[1] / minutesPerInterval);
-
-        const intervals = new Array(12).fill('o');
-        intervals[hourHand] = 'h';
-        intervals[minuteHand] = minuteHand === hourHand ? 'x' : 'm';
-
+        const intervals = parseIntervals(theTime);
         writeOut(clockFromIntervals(intervals));
     }
     catch(e) {
