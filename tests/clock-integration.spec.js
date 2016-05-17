@@ -13,11 +13,47 @@ describe('an ascii clock face', () => {
      proc = child.spawn(exec, {stdio: 'pipe'});
     });
 
-    it('tests', function(done) {
+    it('return a clock face with different hour and minute hands', function(done) {
+        const expected =
+`        o
+    o       o
+
+ o             o
+
+h               o
+
+ o             o
+
+    m       o
+        o`;
+
         proc.stdout.once('data', function(output) {
-            proc.stdin.write('11:00\r');
+            proc.stdin.write('21:35\r');
             proc.stdout.once('data', function(output) {
-                expect(output.toString('utf-8')).to.eq('I am a clock at 11:00');
+                expect(output.toString('utf-8')).to.eq(expected);
+                done();
+            });
+        });
+    });
+
+    it('return a clock face with rounded down minutes', (done) => {
+        const expected =
+`        o
+    m       o
+
+ o             o
+
+o               o
+
+ o             h
+
+    o       o
+        o`;
+
+        proc.stdout.once('data', function(output) {
+            proc.stdin.write('04:59\r');
+            proc.stdout.once('data', function(output) {
+                expect(output.toString('utf-8')).to.eq(expected);
                 done();
             });
         });
