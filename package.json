@@ -13,7 +13,10 @@
     "face",
     "your"
   ],
-  "author": "Dan Mutton & Ryan Boucher",
+  "author": [
+    "Ryan Boucher <ryan.boucher@distributedlife.com> (http://distributedlife.com)",
+    "Dan Mutton <daniel.mutton@gmail.com>"
+  ],
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
@@ -22,7 +25,9 @@
   "directories": {
     "test": "tests"
   },
-  "dependencies": {},
+  "dependencies": {
+    "clockface-ascii": "^1.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/danmutton/asciiclockface.git"

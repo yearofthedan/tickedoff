@@ -2,6 +2,13 @@
 
 [![Build Status](https://snap-ci.com/danmutton/asciiclockface/branch/master/build_image)](https://snap-ci.com/danmutton/asciiclockface/branch/master)
 
+# Usage
+`npm start`
+
+Or, with a custom renderer:
+
+`npm start -- --renderer=pocket`
+
 # The challenge
 In which, our heroes attempt a challenge such that an analogue clock face emerges from the mist.
 

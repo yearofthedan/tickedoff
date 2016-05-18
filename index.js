@@ -8,7 +8,7 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-let rendererName = 'ascii';
+let rendererName = 'clockface-ascii';
 process.argv.forEach(arg => {
   const index = arg.indexOf('--renderer')
   if (index !== -1) {
@@ -16,15 +16,14 @@ process.argv.forEach(arg => {
   }
 });
 
-const renderer = `./src/renderers/${rendererName}.js`
-fs.exists(renderer, (exists) => {
-  if (!exists) {
-    process.stdout.write(`Could not find renderer ${rendererName}. Have you installed the package using "npm i ${rendererName} -S"`);
-    process.exit();
-  }
+try {
+  require.resolve(rendererName);
+} catch (e) {
+  console.error(`Could not find renderer ${rendererName}. Have you installed the package using "npm i ${rendererName} -S"`);
+  process.exit(1);
+}
 
-  rl.question('Enter the time: ', theTime => {
-    process.stdout.write(`${clockFace(theTime, require(renderer))}\n\r`);
-    rl.close();
-  });
+rl.question('Enter the time: ', theTime => {
+  process.stdout.write(`${clockFace(theTime, require(rendererName))}\n\r`);
+  rl.close();
 });
