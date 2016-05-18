@@ -22,7 +22,9 @@ npm i
 
 echo "Running tests"
 npm test
-
+if [[ $? != 0 ]] ; then
+    exit 1
+fi
 
 echo "Clocking on..."
 npm start

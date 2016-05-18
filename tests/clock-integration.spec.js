@@ -3,15 +3,8 @@ var path = require('path');
 var child = require('child_process');
 var expect = require('chai').expect;
 
-const exec = path.join(__dirname, '..', 'index.js');
-
-describe('an ascii clock face', () => {
-
+describe('a clock face', () => {
     let proc;
-
-    beforeEach(()=> {
-     proc = child.spawn(exec, {stdio: 'pipe'});
-    });
 
     function testClock(time, expected, done) {
         proc.stdout.once('data', function(output) {
@@ -24,7 +17,15 @@ describe('an ascii clock face', () => {
         });
     }
 
-    it('return a clock face with different hour and minute hands', function(done) {
+
+    describe('with the default renderer', () => {
+        const exec = path.join(__dirname, '..', 'index.js');
+
+        beforeEach(()=> {
+            proc = child.spawn(exec, {stdio: 'pipe'});
+        });
+
+        it('return a clock face with different hour and minute hands', function(done) {
         const expected =
 `        o
     o       o
@@ -38,10 +39,10 @@ h               o
     m       o
         o`;
         testClock('21:35', expected, done);
-    });
+        });
 
-    it('return a clock face with rounded down minutes', (done) => {
-        const expected =
+        it('return a clock face with rounded down minutes', (done) => {
+            const expected =
 `        o
     m       o
 
@@ -53,11 +54,11 @@ o               o
 
     o       o
         o`;
-        testClock('04:59', expected, done);
-    });
+            testClock('04:59', expected, done);
+        });
 
-    it('return a clock face with the hour and minute hand on the same interval', (done) => {
-        const expected =
+        it('return a clock face with the hour and minute hand on the same interval', (done) => {
+            const expected =
 `        o
     o       o
 
@@ -69,10 +70,29 @@ o               o
 
     o       o
         x`;
-        testClock('06:30', expected, done);
-    });
+            testClock('06:30', expected, done);
+        });
 
-    it('return an error message with invalid input', (done) => {
-        testClock('24:00', 'Invalid time. Input must be in hh:mm format e.g. 13:30', done);
+        it('return an error message with invalid input', (done) => {
+            testClock('24:00', 'Invalid time. Input must be in hh:mm format e.g. 13:30', done);
+        });
+    })
+
+    describe('with a custom renderer', () => {
+        const exec = path.join(__dirname, '..', 'index.js');
+
+        beforeEach(()=> {
+            proc = child.spawn(exec, ['--renderer=pocket'], {stdio: 'pipe'});
+        });
+
+        it('use a specific renderer when instructed', (done) => {
+            const expected =
+`  ooo
+ o   o
+o     o
+ o   o
+  oxo`;
+            testClock('06:30', expected, done);
+        });
     });
 });
