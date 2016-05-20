@@ -82,7 +82,7 @@ o               o
         const exec = path.join(__dirname, '..', 'index.js');
 
         beforeEach(()=> {
-            proc = child.spawn(exec, ['--renderer=pocket'], {stdio: 'pipe'});
+            proc = child.spawn(exec, ['--renderer=clockface-pocketascii'], {stdio: 'pipe'});
         });
 
         it('use a specific renderer when instructed', (done) => {

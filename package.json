@@ -8,6 +8,7 @@
     "test": "mocha tests"
   },
   "keywords": [
+    "ticked",
     "ascii",
     "clock",
     "face",
@@ -26,14 +27,16 @@
     "test": "tests"
   },
   "dependencies": {
-    "clockface-ascii": "^1.0.0"
+    "clockface-ascii": "^1.0.0",
+    "clockface-emojilunar": "^1.0.0",
+    "clockface-pocketascii": "^1.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danmutton/asciiclockface.git"
+    "url": "git+https://github.com/yearofthedan/tickedoff.git"
   },
   "bugs": {
-    "url": "https://github.com/danmutton/asciiclockface/issues"
+    "url": "https://github.com/yearofthedan/tickedoff/issues"
   },
-  "homepage": "https://github.com/danmutton/asciiclockface#readme"
+  "homepage": "https://github.com/yearofthedan/tickedoff#readme"
 }
