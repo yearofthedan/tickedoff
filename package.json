@@ -1,5 +1,6 @@
 {
-  "name": "asciiclockface",
+  "name": "tickedoff",
+  "private": "true",
   "version": "1.0.0",
   "description": "Clock Face, ASCII",
   "main": "index.js",

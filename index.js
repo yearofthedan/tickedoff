@@ -7,23 +7,28 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+const DefaultRenderer = 'clockface-ascii';
 
-let rendererName = 'clockface-ascii';
-process.argv.forEach(arg => {
-  const index = arg.indexOf('--renderer')
-  if (index !== -1) {
-    rendererName = arg.split("=")[1];
-  }
-});
+function getRenderName () {
+  let renderer = DefaultRenderer;
+
+  process.argv.forEach(arg => {
+    if (arg.indexOf('--renderer') !== -1) {
+      renderer = arg.split('=')[1];
+    }
+  });
+
+  return renderer;
+}
 
 try {
-  require.resolve(rendererName);
+  require.resolve(getRenderName());
 } catch (e) {
-  console.error(`Could not find renderer ${rendererName}. Have you installed the package using "npm i ${rendererName} -S"`);
+  console.error(`Could not find renderer ${getRenderName()}. Have you installed the package using "npm i ${getRenderName()} -S"`);
   process.exit(1);
 }
 
 rl.question('Enter the time: ', theTime => {
-  process.stdout.write(`${clockFace(theTime, require(rendererName))}\n\r`);
+  process.stdout.write(`${clockFace(theTime, require(getRenderName()))}\n\r`);
   rl.close();
 });

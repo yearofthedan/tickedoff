@@ -1,7 +1,7 @@
 'use strict';
 var expect = require('chai').expect;
-const mapHourToInterval = require('../src/time-to-interval-mapping').mapHourToInterval;
-const mapMinuteToInterval = require('../src/time-to-interval-mapping').mapMinuteToInterval
+const mapHourToInterval = require('../src/mappings').mapHourToInterval;
+const mapMinuteToInterval = require('../src/mappings').mapMinuteToInterval
 
 describe('mapping hours to intervals', () => {
   it('should map each AM hour to the range 0..11', () => {

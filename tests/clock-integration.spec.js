@@ -10,7 +10,6 @@ describe('a clock face', () => {
         proc.stdout.once('data', function(output) {
             proc.stdin.write(`${time}\r`);
             proc.stdout.once('data', function(output) {
-
                 expect(output.toString('utf-8').replace(/\n\r/, '')).to.eq(expected);
                 done();
             });

@@ -1,6 +1,6 @@
 const checkInput = require('./input-validation');
-const mapHourToInterval = require('./time-to-interval-mapping').mapHourToInterval;
-const mapMinuteToInterval = require('./time-to-interval-mapping').mapMinuteToInterval
+const mapHourToInterval = require('./mappings').mapHourToInterval;
+const mapMinuteToInterval = require('./mappings').mapMinuteToInterval;
 const buildIntervals = require('./build-intervals');
 
 const getHourFromTime = theTime => theTime.split(':')[0];

@@ -21,9 +21,7 @@ In which, our heroes attempt a challenge such that an analogue clock face emerge
 - You should round down the minutes past the hour to the nearest 5 for the purposes of marking it on the clock (so 23 becomes 20, 39 becomes 35).
 
 # Stretch Targets
-- Plugin system for rendering clocks
 - Continuous clock
-- Emoji Clock
 - Docker container for the clock as a microservice startup we're leaving ThoughtWorks to start.
 
 # The challengers

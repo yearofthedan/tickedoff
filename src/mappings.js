@@ -1,12 +1,14 @@
 'use strict';
 
-const minutesPerInterval = 5;
+const MinutesPerInterval = 5;
+const IntervalsOnClockFace = 12;
+
 function mapMinuteToInterval(minutes) {
-    return Math.floor(minutes / minutesPerInterval);
+    return Math.floor(minutes / MinutesPerInterval);
 }
 
 function mapHourToInterval(hour) {
-    return hour % 12;
+    return hour % IntervalsOnClockFace;
 }
 
 module.exports = {
