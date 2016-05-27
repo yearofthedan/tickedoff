@@ -57,7 +57,7 @@ date +"%H:%M" | ./index.js --renderer=clockface-emojilunar
 ### Known renderers
 
 * [clockface-ascii]
-* [clockface-pocket]
+* [clockface-pocketascii]
 * [clockface-emojilunar]
 
 You may be able to find more renderers by searching [npm](https://www.npmjs.com/search?q=clockface).
